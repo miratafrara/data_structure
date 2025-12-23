@@ -1,0 +1,57 @@
+ALGORITHM Somme_elements_distincts
+VAR
+    A, B : ARRAY OF INTEGER
+    n, m : INTEGER
+    i, j : INTEGER
+    trouve: BOOLEAN
+    somme : INTEGER
+BEGIN
+    Write("Veuillez introduire le nombre d'éléments du premier tableau")
+    Read(n)
+    Write("Veuillez introduire le nombre d'éléments du deuxième tableau")
+    Read(m)
+
+    /* remplissage de premier tableaux de n éléments */
+    Write("Veuillez introduire les éléments du premier tableau")
+    FOR i := 1 TO n DO
+        Read(A[i])
+    END_FOR
+
+    /* remplissage de deuxième tableaux de m éléments */
+    Write("Veuillez introduire les éléments du deuxième tableau")
+    FOR i := 1 TO m DO
+        Read(B[i])
+    END_FOR
+
+    /* initialisation de la somme à 0 */
+    somme := 0
+
+    /* on vérifie pour chaque élément du tableau A s'il n'existe pas dans le tableau B on l'ajoute à somme */
+    FOR i := 1 TO n DO
+        trouve := FALSE
+        FOR j := 1 TO m DO
+            IF A[i] = B[j] THEN
+                trouve := TRUE
+            END_IF
+        END_FOR
+        IF trouve = FALSE THEN
+            somme := somme + A[i]
+        END_IF
+    END_FOR
+
+    /* on vérifie pour chaque élément du tableau B s'il n'existe pas dans le tableau A on l'ajoute à somme */
+    FOR i := 1 TO m DO
+        trouve := FALSE
+        FOR j := 1 TO n DO
+            IF B[i] = A[j] THEN
+                trouve := TRUE
+            END_IF
+        END_FOR
+        IF trouve = FALSE THEN
+            somme := somme + B[i]
+        END_IF
+    END_FOR
+
+    Write("la somme des éléments différents des deux tableau est : ")
+    Write(somme)
+END

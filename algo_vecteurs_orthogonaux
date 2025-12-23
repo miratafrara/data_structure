@@ -1,0 +1,36 @@
+FUNCTION dot_product(v1, v2 : ARRAY OF INTEGER; n : INTEGER) : INTEGER
+VAR
+    i , prod_scal : INTEGER
+    
+BEGIN
+    prod_scal := 0
+    FOR i := 1 TO n DO
+        prod_scal := prod_scal + v1[i] * v2[i]
+    END_FOR
+    RETURN prod_scal
+END
+
+ALGORITHM Vecteurs_Orthogonaux
+VAR
+    v1, v2 : ARRAY OF INTEGER
+    n, k, i, prod_scal : INTEGER
+    
+BEGIN
+
+    /* n dimension des vecteurs et k nombres de couples  */
+    Read(n)
+    Read(k)
+
+    FOR i := 1 TO k DO
+        Read(v1)
+        Read(v2)
+
+        prod_scal := dot_product(v1, v2, n)
+
+        IF prod_scal = 0 THEN
+            Write("Vecteurs orthogonaux")
+        ELSE
+            Write("Vecteurs non orthogonaux")
+        END_IF
+    END_FOR
+END
